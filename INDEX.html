@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bikash Kumar Swain — Embedded & AI Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy2: #111827;
+    --accent: #00c8a0;
+    --accent2: #0ea5e9;
+    --text: #e8edf5;
+    --muted: #8b99b5;
+    --card: #131d2e;
+    --border: rgba(0,200,160,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 5%; background: rgba(10,15,30,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 5% 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,200,160,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,233,0.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { max-width: 700px; }
+  .hero-tag { display: inline-block; padding: 0.3rem 0.9rem; border: 1px solid var(--accent); border-radius: 2rem; color: var(--accent); font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.2rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 520px; margin-bottom: 2.2rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn { padding: 0.75rem 1.8rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--accent); color: var(--navy); }
+  .btn-primary:hover { background: #00e0b4; transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.2); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; animation: fadeUp 0.6s 0.4s ease both; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); }
+  section { padding: 5rem 5%; }
+  .section-label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 3rem; color: var(--text); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; }
+  .about-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .detail-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; }
+  .detail-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .detail-value { font-size: 0.95rem; font-weight: 500; margin-top: 0.2rem; }
+  .about-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; }
+  .about-card::before { content: '</>'; font-family: 'DM Serif Display', serif; font-size: 8rem; color: rgba(0,200,160,0.05); position: absolute; bottom: -1rem; right: 1rem; line-height: 1; }
+  .about-card h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+  .about-card ul { list-style: none; }
+  .about-card ul li { color: var(--muted); font-size: 0.9rem; padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+  .about-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+  .skills-bg { background: var(--navy2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+  .skill-card h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 0.8rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { padding: 0.25rem 0.7rem; border-radius: 4px; background: rgba(0,200,160,0.08); border: 1px solid rgba(0,200,160,0.2); color: var(--muted); font-size: 0.8rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; transition: all 0.2s; position: relative; overflow: hidden; }
+  .project-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .project-card:hover { border-color: rgba(0,200,160,0.4); transform: translateY(-4px); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 3px; background: rgba(0,200,160,0.1); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 1rem; }
+  .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 0.8rem; }
+  .project-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tech span { padding: 0.2rem 0.6rem; border-radius: 3px; background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.2); color: #7dd3fc; font-size: 0.75rem; }
+  .exp-bg { background: var(--navy2); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), transparent); }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-dot { position: absolute; left: -2.4rem; top: 0.3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--navy2); box-shadow: 0 0 0 4px rgba(0,200,160,0.15); }
+  .timeline-date { font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+  .timeline-role { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .timeline-company { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+  .timeline-item ul { list-style: none; }
+  .timeline-item ul li { color: var(--muted); font-size: 0.9rem; padding: 0.25rem 0; padding-left: 1.2rem; position: relative; }
+  .timeline-item ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.35rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border-radius: 8px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; transition: all 0.2s; }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(4px); }
+  .contact-link-icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+  .contact-link-text { font-size: 0.9rem; }
+  .contact-link-label { font-size: 0.75rem; color: var(--muted); }
+  .cert-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .cert-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; border-radius: 8px; background: var(--card); border: 1px solid var(--border); }
+  .cert-icon { color: #fbbf24; font-size: 1rem; }
+  .cert-text { font-size: 0.9rem; }
+  .cert-year { font-size: 0.8rem; color: var(--muted); }
+  footer { text-align: center; padding: 2rem 5%; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) { .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; } .nav-links { display: none; } .hero-stats { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">BKS</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Bikash Kumar <em>Swain</em></h1>
+    <p class="hero-sub">Embedded Systems & AI Developer — building intelligent hardware solutions with ESP32, Edge AI, and IoT connectivity.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="mailto:swainbikash524@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">9.17</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-num">2+</div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num">2</div><div class="stat-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">Who I am</div>
+    <div class="section-title">About Me</div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a 3rd-year B.Tech Electronics & Communication Engineering student at Centurion University of Technology and Management, Bhubaneswar, with a strong focus on embedded systems and AI at the edge.</p>
+      <p>I combine microcontrollers, machine learning, and IoT protocols to build real-world solutions — from smart driver assistance to BLE-powered environmental monitors.</p>
+      <div class="about-details">
+        <div class="detail-item"><div class="detail-label">Degree</div><div class="detail-value">B.Tech ECE</div></div>
+        <div class="detail-item"><div class="detail-label">Batch</div><div class="detail-value">2023 – 2027</div></div>
+        <div class="detail-item"><div class="detail-label">CGPA</div><div class="detail-value">9.17 / 10</div></div>
+        <div class="detail-item"><div class="detail-label">Location</div><div class="detail-value">Bhubaneswar, India</div></div>
+      </div>
+    </div>
+    <div class="about-card reveal">
+      <h3>What I'm focused on</h3>
+      <ul>
+        <li>Edge AI & TinyML on microcontrollers</li>
+        <li>ESP32 / STM32 firmware development</li>
+        <li>BLE & IoT sensor integration</li>
+        <li>Real-time embedded C/C++ programming</li>
+        <li>PCB design with KiCad</li>
+        <li>Cloud integration via Firebase & APIs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-bg">
+  <div class="reveal">
+    <div class="section-label">What I work with</div>
+    <div class="section-title">Technical Skills</div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">💻</div>
+      <h4>Languages</h4>
+      <div class="skill-tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🔌</div>
+      <h4>Microcontrollers</h4>
+      <div class="skill-tags"><span class="tag">ESP32</span><span class="tag">ESP32-CAM</span><span class="tag">STM32</span><span class="tag">Arduino</span><span class="tag">Nano 33 BLE</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🛠️</div>
+      <h4>IDEs & Tools</h4>
+      <div class="skill-tags"><span class="tag">Keil uVision</span><span class="tag">Arduino IDE</span><span class="tag">Proteus</span><span class="tag">STM32CubeIDE</span><span class="tag">Flash Magic</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">📡</div>
+      <h4>Protocols</h4>
+      <div class="skill-tags"><span class="tag">UART</span><span class="tag">I2C</span><span class="tag">SPI</span><span class="tag">BLE</span><span class="tag">ADC</span><span class="tag">PWM</span><span class="tag">GPIO</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🤖</div>
+      <h4>AI & Edge</h4>
+      <div class="skill-tags"><span class="tag">Edge Impulse</span><span class="tag">TensorFlow</span><span class="tag">TinyML</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">☁️</div>
+      <h4>Cloud & Hardware</h4>
+      <div class="skill-tags"><span class="tag">Firebase</span><span class="tag">Telegram API</span><span class="tag">WhatsApp API</span><span class="tag">KiCad</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">What I've built</div>
+    <div class="section-title">Featured Projects</div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-badge">EMBEDDED AI</div>
+      <h3>Driver Assistance System</h3>
+      <p>Real-time traffic sign detection using ESP32-CAM and Edge Impulse. Sends instant alerts via Telegram and WhatsApp on detecting STOP, SLOW, and warning signs.</p>
+      <div class="project-tech"><span>ESP32-CAM</span><span>Edge Impulse</span><span>TensorFlow</span><span>Telegram API</span><span>Firebase</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-badge">IoT / BLE</div>
+      <h3>BLE Climate Sensing System</h3>
+      <p>Low-power real-time temperature and humidity monitoring using Nano 33 BLE Sense, transmitting live sensor data to a mobile app over Bluetooth Low Energy.</p>
+      <div class="project-tech"><span>Nano 33 BLE Sense</span><span>BLE</span><span>C++</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-badge">DASHBOARD</div>
+      <h3>ESP32 Web Dashboard</h3>
+      <p>A real-time web dashboard for ESP32-based sensor monitoring, built with HTML and hosted on the microcontroller itself.</p>
+      <div class="project-tech"><span>ESP32</span><span>HTML</span><span>WebSocket</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="exp-bg">
+  <div class="reveal">
+    <div class="section-label">Work history</div>
+    <div class="section-title">Experience</div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">OCT 2025 – DEC 2025</div>
+      <div class="timeline-role">Embedded System Intern</div>
+      <div class="timeline-company">IntersElite</div>
+      <ul>
+        <li>Hands-on work with ESP32, STM32, Arduino, and Nano 33 BLE Sense</li>
+        <li>Sensor interfacing, BLE communication, and embedded C/C++ firmware debugging</li>
+        <li>Completed industrial internship with certificate of completion</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">PROJECT-BASED</div>
+      <div class="timeline-role">Embedded & AI Developer</div>
+      <div class="timeline-company">Self-directed</div>
+      <ul>
+        <li>Trained and deployed image classification models using Edge Impulse & TensorFlow on embedded devices</li>
+        <li>Developed embedded systems integrated with Telegram, WhatsApp API, Firebase, and Google services</li>
+        <li>Built end-to-end embedded–AI workflows with real-time alerts and edge deployment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Let's connect</div>
+    <div class="section-title">Contact & Certifications</div>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <p style="color:var(--muted); margin-bottom:0.5rem;">Open to internships, collaborations, and embedded/AI projects. Reach out anytime!</p>
+      <div class="contact-links">
+        <a href="mailto:swainbikash524@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div><div class="contact-link-label">Email</div><div class="contact-link-text">swainbikash524@gmail.com</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/bikash-swain-b75961322" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-text">bikash-swain-b75961322</div></div>
+        </a>
+        <a href="https://github.com/bikash-cloud" target="_blank" class="contact-link">
+          <div class="contact-link-icon">🐙</div>
+          <div><div class="contact-link-label">GitHub</div><div class="contact-link-text">github.com/bikash-cloud</div></div>
+        </a>
+        <a href="tel:+918917628059" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div><div class="contact-link-label">Phone</div><div class="contact-link-text">+91-8917628059</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3 style="font-family:'DM Serif Display',serif; margin-bottom:1.2rem;">Certifications</h3>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon">🏅</div>
+          <div><div class="cert-text">Certificate of Internship — Embedded Systems</div><div class="cert-year">IntersElite · 2025</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🏅</div>
+          <div><div class="cert-text">Certificate of Industrial Training — Embedded Systems</div><div class="cert-year">IntersElite · 2025</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Bikash Kumar Swain · Built with passion for embedded systems</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
